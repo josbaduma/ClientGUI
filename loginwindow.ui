@@ -34,19 +34,6 @@
      </rect>
     </property>
    </widget>
-   <widget class="QPlainTextEdit" name="fileText">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>190</y>
-      <width>640</width>
-      <height>360</height>
-     </rect>
-    </property>
-    <property name="readOnly">
-     <bool>true</bool>
-    </property>
-   </widget>
    <widget class="QLabel" name="userLabel">
     <property name="geometry">
      <rect>
@@ -145,6 +132,22 @@
     </property>
     <property name="text">
      <string>Read</string>
+    </property>
+   </widget>
+   <widget class="QTableWidget" name="tableFile">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>180</y>
+      <width>650</width>
+      <height>370</height>
+     </rect>
+    </property>
+    <property name="rowCount">
+     <number>0</number>
+    </property>
+    <property name="columnCount">
+     <number>0</number>
     </property>
    </widget>
   </widget>

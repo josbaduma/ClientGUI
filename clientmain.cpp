@@ -6,6 +6,7 @@ ClientMain::ClientMain(QWidget *parent) :
     ui(new Ui::ClientMain)
 {
     ui->setupUi(this);
+    this->encryption = new Encryption();
     QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8"));
     this->_client = new Client();
     foreach (const QHostAddress &address, QNetworkInterface::allAddresses()) {
@@ -27,7 +28,8 @@ ClientMain::~ClientMain()
 void ClientMain::on_signInButton_clicked()
 {
     QString user = this->ui->userLineEdit->text();
-    QString password = this->ui->passwordlineEdit->text();
+    QString password = Converter::fromStringToQString(
+                encryption->passwordEncryption(this->ui->passwordlineEdit->text().toStdString()));
     QString message = "adduser " + this->_ip + ":" + QString::number(this->_port)
             + ":" + user + ":" + password + ":" + this->ui->diskIdLineEdit->text();
 
@@ -46,7 +48,8 @@ void ClientMain::on_signInButton_clicked()
 void ClientMain::on_logInButton_clicked()
 {
     QString user = this->ui->userLineEdit->text();
-    QString password = this->ui->passwordlineEdit->text();
+    QString password = Converter::fromStringToQString(
+                encryption->passwordEncryption(this->ui->passwordlineEdit->text().toStdString()));
     QString message = "connect " + this->_ip + ":" + QString::number(this->_port)
             + ":" + user + ":" + password + ":" + this->ui->diskIdLineEdit->text();
 
@@ -54,7 +57,7 @@ void ClientMain::on_logInButton_clicked()
     this->ui->passwordlineEdit->setText("");
     this->ui->diskIdLineEdit->setText("");
 
-    if(this->_client->writeToServer(message) == "true")
+    if(this->_client->writeToServer(message) == "true\n")
     {
         this->_userWindows = new LogInWindow(this->_client,this);
         this->_userWindows->setUser("User: " + user);
@@ -78,7 +81,7 @@ void ClientMain::on_actionConnect_to_Server_triggered()
     this->_dialogWind = new DataDialog(this);
     this->_dialogWind->exec();
     this->_port = this->_dialogWind->getMessage().toInt();
-    this->_client->connectToServer("186.15.119.68", this->_port);
+    this->_client->connectToServer("192.168.1.2", this->_port);
     this->_dialogWind->deleteLater();
 }
 

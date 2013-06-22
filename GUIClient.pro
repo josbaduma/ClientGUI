@@ -5,6 +5,8 @@
 #-------------------------------------------------
 
 QT       += core gui
+QT       += network
+INCLUDEPATH += ../apcomptec
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -13,22 +15,19 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp \
     newfiledialog.cpp \
     loginwindow.cpp \
     datadialog.cpp \
     clientmain.cpp \
     client.cpp
 
-HEADERS  += mainwindow.h \
-    newfiledialog.h \
+HEADERS  += newfiledialog.h \
     loginwindow.h \
     datadialog.h \
     clientmain.h \
     client.h
 
-FORMS    += mainwindow.ui \
-    newfiledialog.ui \
+FORMS    += newfiledialog.ui \
     loginwindow.ui \
     datadialog.ui \
     clientmain.ui
@@ -41,4 +40,4 @@ OTHER_FILES += \
     Electric Avennue.wav
 
 RESOURCES += \
-    Resources.qrc
+    Resource.qrc

@@ -8,6 +8,8 @@
 #include <QtCore>
 #include <QtGui>
 #include <datadialog.h>
+#include <../apcomptec-RAIDB/util/Encryption.h>
+#include <../apcomptec-RAIDB/util/Converter.h>
 
 namespace Ui {
 class ClientMain;
@@ -39,6 +41,7 @@ private:
     Client* _client;
     QString _ip;
     int _port;
+    Encryption *encryption;
 
 
 };

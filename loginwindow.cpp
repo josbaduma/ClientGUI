@@ -8,7 +8,6 @@ LogInWindow::LogInWindow(Client *pClient, QWidget *parent) :
     ui->setupUi(this);
     this->_client = pClient;
     this->setWindowTitle("RaidB");
-//    QSound::play("/home/jose/QtCreator/ClienteGUI/Electric Avennue.wav");
 }
 
 LogInWindow::~LogInWindow()
@@ -82,16 +81,31 @@ void LogInWindow::on_actionOpen_File_triggered()
     qDebug() << message;
     this->_client->writeToServer(message);
     this->_dialogW->deleteLater();
+
+    //Funcion para recuperar en este formato
+    QString answer = "jose;daniel;20\ndaniel;araya;19";
+    QStringList listData, listAnswer = answer.split("\n");
+
+    this->ui->tableFile->setRowCount(listAnswer.size());
+    for (int row = 0; row < listAnswer.size(); ++row) {
+        listData = listAnswer[row].split(";");
+        this->ui->tableFile->setColumnCount(listData.size());
+
+        for (int column = 0; column < listData.size(); ++column) {
+            QTableWidgetItem* item = new QTableWidgetItem();
+            item->setText(listData[column]);
+            this->ui->tableFile->setItem(row, column,item);
+            qDebug() << "Entro Data: " << listData[column];
+        }
+    }
 }
 
 void LogInWindow::on_actionLog_Out_triggered()
 {
     this->_client->writeToServer("close");
     qDebug() << "close";
-    this->hide();String message = JOptionPane.showInputDialog(null, "Directory...", "Enter the directory: ", JOptionPane.QUESTION_MESSAGE);
-			this.client.sendMessage(message);	
-			this.client.closeClient();
     this->parentWidget()->show();
+    this->hide();
 }
 
 void LogInWindow::on_actionAbout_triggered()

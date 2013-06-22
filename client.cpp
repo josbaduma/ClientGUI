@@ -11,7 +11,9 @@ QString Client::writeToServer(QString pMessage)
     socket->write(pMessage.toAscii());
     socket->waitForBytesWritten();
     socket->waitForReadyRead();
-    return socket->readAll();
+    QString message = socket->readAll();
+    qDebug() << message;
+    return message;
 }
 
 void Client::connectToServer(QString pIP, int pPort)
