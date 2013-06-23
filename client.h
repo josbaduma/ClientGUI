@@ -18,6 +18,7 @@ signals:
 
 public slots:
     QString writeToServer(QString pMessage);
+    QString recibeMessage();
 
 private:
     QTcpSocket* socket;

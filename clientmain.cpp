@@ -81,7 +81,9 @@ void ClientMain::on_actionConnect_to_Server_triggered()
     this->_dialogWind = new DataDialog(this);
     this->_dialogWind->exec();
     this->_port = this->_dialogWind->getMessage().toInt();
-    this->_client->connectToServer("192.168.1.2", this->_port);
+    this->_client->connectToServer("172.26.99.174", this->_port);
+    QMessageBox boxmessage;
+    boxmessage.about(this, "Disk Groups",this->_client->recibeMessage());
     this->_dialogWind->deleteLater();
 }
 

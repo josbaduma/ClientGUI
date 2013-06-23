@@ -8,8 +8,8 @@
 #include <QtCore>
 #include <QtGui>
 #include <datadialog.h>
-#include <../apcomptec-RAIDB/util/Encryption.h>
-#include <../apcomptec-RAIDB/util/Converter.h>
+#include <util/Encryption.h>
+#include <util/Converter.h>
 
 namespace Ui {
 class ClientMain;
